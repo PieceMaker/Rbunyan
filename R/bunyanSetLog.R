@@ -74,7 +74,7 @@ function(level, logpath, logfile, memlines, jsonout=FALSE, verbose = FALSE )  {
         flush(bunyan_globals$log_con)
         close(bunyan_globals$log_con)
       }
-      log_con <- NULL
+      log_con <- stdout()
     }
   } else {
     if(missing(logpath)) { # Use Current directory
