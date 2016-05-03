@@ -74,8 +74,10 @@ function(level, logpath, logfile, memlines, jsonout=FALSE, verbose = FALSE )  {
         flush(bunyan_globals$log_con)
         close(bunyan_globals$log_con)
       }
-      log_con <- stdout()
+      log_con <- NULL
     }
+  } else if(logfile == "stdout") {
+    log_con <- stdout()
   } else {
     if(missing(logpath)) { # Use Current directory
       if (.Platform$OS.type == "unix") {
@@ -108,8 +110,10 @@ function(level, logpath, logfile, memlines, jsonout=FALSE, verbose = FALSE )  {
     # Create empty log write first line
       log_con <- file(logname,"wt")
     }
+  } else if(logfile == "stdout") {
+    log_con <- stdout()
   } else {
-      log_con <- stdout()
+    log_con <- NULL
   }
 
   # Set up bunyan environment 

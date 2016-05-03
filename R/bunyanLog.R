@@ -128,11 +128,14 @@ function(msg, level, req, res, version) {
     }
 
     ######
-    #FILE logging
     if (bunyan_globals$logname != "") {
+      #FILE logging
       cat(logline, file=bunyan_globals$log_con, sep="\n", append=TRUE)
       # Windows likes to be flushed
       flush(bunyan_globals$log_con)
+    } else {
+      #STDOUT logging
+      cat(logline, file=bunyan_globals$log_con, sep="\n")
     }
 
     #####
